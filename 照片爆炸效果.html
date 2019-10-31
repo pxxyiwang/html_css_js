@@ -12,6 +12,9 @@
             padding: 0;
         }
 
+        body {
+            overflow: hidden;
+        }
         #div1 {
             position: absolute;
             width: 1024px;
@@ -23,7 +26,6 @@
             border: 1px solid #ccc;
             /* background: url(img/1.png);
             background-size: 100% 100%; */
-            /* overflow: hidden; */
         }
         #div1>div {
             position: absolute;
@@ -37,7 +39,7 @@
         }
         #div1>div>div {
             position: absolute;
-            transition: all 3s;
+            transition: all 5s;
         }
     </style>
 </head>
@@ -100,12 +102,12 @@
                 allDiv[i].style.opacity = 0
 
             }
-        }, 3000);
+        }, 5000);
         
 
         setTimeout(() => {
             zDiv.remove();
-        }, 5000)
+        }, 9000)
     }
 
     
