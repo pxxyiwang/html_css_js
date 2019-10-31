@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>照片爆炸效果_js+css3</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            position: absolute;
+            width: 1024px;
+            height: 576px;
+            left: 50%;
+            top: 50%;
+            margin-left: -512px;
+            margin-top: -225px;
+            border: 1px solid #ccc;
+            /* background: url(img/1.png);
+            background-size: 100% 100%; */
+            /* overflow: hidden; */
+        }
+        #div1>div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform: perspective(800px);
+            transform-style: preserve-3d;
+            /* transform: perspective(800px); */
+        }
+        #div1>div>div {
+            position: absolute;
+            transition: all 2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+
+
+<script>
+
+
+    /* 层级计数 */
+    let zIndex = 9999999;
+    /* 背景图 */
+    let arr = ['1.png', '2.png', '3.jpg', '4.jpg', '5.png', '6.jpg', '7.jpg'];
+    /* 背景图计数 */
+    let index = 0;
+
+    // 拿到div1这个元素
+    let div1 = document.querySelector("#div1");
+    console.log(div1);
+
+    boom(20, 15);
+
+    function boom (x, y) {
+        // 创建一个div子元素
+        let zDiv = document.createElement("div");
+        div1.appendChild(zDiv);
+        zDiv.style.zIndex = zIndex;
+        zIndex--;
+
+        /* 循环创建孙子元素div */
+        for (let i = 0; i < x; i++) { // 横向
+            for (let j = 0; j < y; j++) { // 纵向
+
+                // 创建一个div元素
+                let oDiv = document.createElement("div");
+                oDiv.style.background = 'url(img/' + arr[index] + ')';
+                oDiv.style.width = div1.clientWidth / x + 'px';
+                oDiv.style.height = div1.clientHeight / y + 'px';
+                oDiv.style.left = (div1.clientWidth / x) * i + 'px';
+                oDiv.style.top = (div1.clientHeight / y) * j + 'px';
+
+                oDiv.style.backgroundPositionX = (div1.clientWidth / x) * -i + "px";
+                oDiv.style.backgroundPositionY = (div1.clientHeight / y) * -j + 'px';
+                //将元素div插入div1的子元素div中
+                zDiv.appendChild(oDiv);
+            }
+        }
+
+        /* 子元素div （tranform） 爆炸效果*/
+        let allDiv = zDiv.children;
+        setTimeout(() => {
+            index++;
+            if (index == arr.length) {
+                index = 0;
+            }
+            boom(10, 8); 
+            for (let i = 0; i < allDiv.length; i++) {
+                allDiv[i].style.transform = 'rotateX(' + (Math.random() * 360 - 180) + 'deg) rotateY(' + (Math.random() * 360 - 180) + 'deg) rotateZ(' + (Math.random() * 360 - 180) + 'deg) translateX(' + (Math.random() * 300 - 150) + 'px) translateY(' + (Math.random() * 300 - 150) + 'px) translateZ(' + (Math.random() * 300 - 150) + 'px)';
+                allDiv[i].style.opacity = 0
+
+            }
+        }, 4000);
+        
+
+        setTimeout(() => {
+            zDiv.remove();
+        }, 6000)
+    }
+
+    
+
+</script>
+
+</body>
+</html>
