@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外边（margin）距合并现象</title>
+    <style>
+        div {
+            height: 100px;
+            border: 1px solid #000;
+        }
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+        .hezi1 {
+            margin-right: 20px;
+        }
+        .hezi2 {
+            margin-left: 80px;
+        }
+        .box1 {
+            margin-bottom: 20px;
+        }
+        .box2 {
+            margin-top: 80px;
+        }
+
+    </style>
+</head>
+<body>
+    <span class="hezi1">外边距不合并（右边距20px）</span><span class="hezi2">外边距不合并（右边距80px）</span>
+    <div class="box1">外边距合并（下边距20px）</div>
+    <div class="box2">外边距合并（上边距80px）注：外边距合并只有上下边距才有效，左右边距是相加不会合并的</div>
+</body>
+</html>
