@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素清除浮动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box1 {
+            background-color: red;
+        }
+        .box1::after {
+            content: "";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .box1 {
+            /* 兼容IE6 */
+            *zoom: 1;
+        }
+
+        .box2 {
+            background-color: green;
+        }
+        .box2::after {
+            content: "";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .box3 {
+            background-color: rosybrown;
+        }
+        p {
+            float: left;
+            background-color: blue;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <p>我是文字1</p>
+        <p>我是文字2</p>
+        <p>我是文字3</p>
+    </div>
+    <div class="box2">
+        <p>我是文字1</p>
+        <p>我是文字2</p>
+        <p>我是文字3</p>
+    </div>
+    <div class="box3">
+        你好横说竖说说说或说说说或说所所所所所所所所所所所所所所<br>
+        后方可实际付款的十分简单斯洛伐克独守空房<br>
+        几号放假肯定是符合
+    </div>
+</body>
+</html>
